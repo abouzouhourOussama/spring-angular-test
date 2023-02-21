@@ -22,8 +22,9 @@ public class ArticleController {
 
     @Autowired
     private DaoImp daoImp;
+
     @PostMapping("/articles")
-    public Article _addArticle(@RequestBody Article a){
+    public Article _addArticle(@RequestBody Article a) {
 
         return daoImp.addArticle(a);
 
@@ -31,39 +32,35 @@ public class ArticleController {
     }
 
 
-
     @GetMapping("/articles")
-    public List<Article> _getArticles(){
+    public List<Article> _getArticles() {
 
         return daoImp.getArticles();
     }
 
     @GetMapping("/articles/{id}")
-    public ResponseEntity<Article> _getArticleById(@PathVariable(value = "id") Long id){
-        Article article= daoImp.getArticleById(id);
-        if(article!=null)
+    public ResponseEntity<Article> _getArticleById(@PathVariable(value = "id") Long id) {
+        Article article = daoImp.getArticleById(id);
+        if (article != null)
             return new ResponseEntity<>(article, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/upload")
-    public String uploadImg(MultipartFile f){
-        String dest="C:/Users/abzhr/Desktop/atoz-test/spring-angular-test/client/src/assets/pics/"+f.getOriginalFilename();
-        try{
+    public String uploadImg(MultipartFile f) {
+        String dest = "C:/Users/abzhr/Desktop/atoz-test/spring-angular-test/client/src/assets/pics/" + f.getOriginalFilename();
+        try {
             Files.copy(
                     f.getInputStream()
                     , Paths.get(dest)
                     , StandardCopyOption.REPLACE_EXISTING
             );
 
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return "image uploaded";
     }
-
-
-
 
 
 }

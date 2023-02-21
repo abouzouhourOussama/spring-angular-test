@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -28,35 +29,60 @@ public class OrderController {
     }*/
 
     @PostMapping("/orders")
-    public Order _addOrderArt(@RequestBody List<Article> articles){
-      Order order=new Order();
-      order.setArticles(articles); ;
-      daoImp.addOrder(order);
-      return order;
-  }
+    public Order _addOrderArt(@RequestBody List<Article> articles) {
+        Order order = new Order();
+        order.setArticles(articles);
+        ;
+        daoImp.addOrder(order);
+        return order;
+    }
 
     @GetMapping("/orders")
-    public List<Order> _getOrders(){
+    public List<Order> _getOrders() {
         return daoImp.getOrders();
     }
 
     @PutMapping("/orders/{id}")
-    public ResponseEntity<HttpStatus> _modifyOrder(
+    public ResponseEntity<Order> _modifyOrder(
             @PathVariable(value = "id") Long id
-            ,@RequestBody Article article
-            ) {
-        Order order= orderRepo.findById(id).get();
-        if(order==null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            , @RequestBody Article article
+    ) {
+        Order order = orderRepo.findById(id).get();
+        if (order == null)
+            return new ResponseEntity<>(order, HttpStatus.BAD_REQUEST);
         //sinon on ajoute un article
         order.getArticles().add(article);
         orderRepo.save(order);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(order, HttpStatus.OK);
 
 
     }
 
+    @DeleteMapping("/orders/{id}")
+    public ResponseEntity<Order> _deleteOrderArticle(
+            @PathVariable(value = "id") Long id
+            , @RequestBody Article article
+    ) {
 
+        Order order = orderRepo.findById(id).get();
+        Long articleId = article.getId();
+
+        //si ordre ou article n'existe pas
+
+        if((order==null)||( articleId ==null ))
+                return new ResponseEntity<>(order,HttpStatus.BAD_REQUEST);
+
+
+        //traitement
+        Iterator itr = order.getArticles().iterator();
+        while (itr.hasNext()) {
+            if (articleId == ((Article) itr.next()).getId())
+                itr.remove();
+        }
+        orderRepo.save(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
+
+    }
 
 
 }
