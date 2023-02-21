@@ -1,0 +1,36 @@
+<app-header></app-header>
+<form  [formGroup]="articleForm" (ngSubmit)="addArticle()" >
+    <div class="form_card">
+        <div class="form_card_item">
+            <div class="sub_item_row2">
+                <label>name</label>
+                <input type="text" formControlName="name"  class="form-control" id="exampleFormControlInput1">
+            </div>
+        </div>
+
+        <div class="form_card_item">
+            <div class="sub_item_row2">
+                <label>price</label>
+                <input type="number" formControlName="price"  class="form-control" id="exampleFormControlInput1">
+            </div>
+        </div>
+
+
+        <div class="form_card_item">
+            <div class="sub_item_row2">
+                <label>picture</label>
+                <input (change)="upload($event)" formControlName="img" class="form-control" type="file" id="formFile">
+            </div>
+        </div>
+
+        <div class="form_card_item">
+            <div class="sub_item_row2">
+                <button type="submit" class="btn btn-primary">Create</button>
+
+            </div>
+        </div>
+
+
+    </div>
+</form>
+

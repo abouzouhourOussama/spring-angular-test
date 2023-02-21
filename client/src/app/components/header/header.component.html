@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img style="margin-right:10px; height:50px ;" src="../../../assets/pics/ATOZ-Digital-LogoSmall.png">
+
+      <a style="margin-right:10px;" class="navbar-brand" href="articles">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" ></a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" ></a>
+              </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="orders">Orders</a>
+          </li>
+         
+          <div ngbDropdown>
+            <button class="btn " id="gfg" 
+                    ngbDropdownToggle>Articles</button>
+            <div ngbDropdownMenu="gfg">
+              <a href="articles/add" ngbDropdownItem>Add Article</a>
+              <a href="articles" ngbDropdownItem>View Articles</a>
+            </div>
+          </div>
+
+          <li class="nav-item">
+            <a class="nav-link" ></a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
