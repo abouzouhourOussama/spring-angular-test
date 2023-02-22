@@ -36,6 +36,7 @@ export class AddArticleComponent {
 
   addArticle() {
     this.newArticle = new Article(
+      0,
       this.articleForm.value.name,
       this.articleForm.value.price,
       this.img.name);

@@ -23,13 +23,17 @@ export class ArticlesComponent {
   getArticles() {
     this.articleOrderService.getArticles().subscribe(
       (data) => {
-        
+
         this.articles = data;
-        console.log(data);
+        //console.log( this.articles);
+        
+        //console.log(data);
 
       }
     )
   }
+
+  
 
   getOrders() {
     this.articleOrderService.getOrders().subscribe(
@@ -45,23 +49,23 @@ export class ArticlesComponent {
   addToOrder(a: Article) {
     this.orderArticles.push(a);
     console.log(this.orderArticles);
-    
+
     this.validateBtnEnable = true;
     this.newBtnEnable = false;
   }
 
   validateOrder() {
 
-    //envoyer les donner sans id
-    var _orderArticles=new Array<Article>();
+    //envoyer les donner de l'article
+    var _orderArticles = new Array<Article>();
     this.orderArticles.map(
-      (elm)=>{
-        let e=new Article(elm.name,elm.price,elm.pic);
+      (elm) => {
+        let e = new Article(elm.id,elm.name, elm.price, elm.pic);
         _orderArticles.push(e);
       }
     )
     //console.log(_orderArticles);
-    
+
 
     this.articleOrderService.addOrder(_orderArticles)
       .subscribe(
@@ -80,7 +84,7 @@ export class ArticlesComponent {
 
 
 
-  createOrder(){
+  createOrder() {
     this.newBtnEnable = false;
     alert("please choose products !");
 

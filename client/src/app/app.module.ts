@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrdersComponent } from './components/orders/orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { ModifyOrderComponent } from './components/modify-order/modify-order.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
     ArticlesComponent,
     AddArticleComponent,
     HeaderComponent,
-    OrdersComponent
+    OrdersComponent,
+    ModifyOrderComponent
   ],
   imports: [
     BrowserModule,

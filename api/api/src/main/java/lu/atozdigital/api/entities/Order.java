@@ -21,7 +21,7 @@ public class Order {
     private String Ref= String.valueOf(UUID.randomUUID());
     private Date date;
 
-    @OneToMany(targetEntity = Article.class,cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Article.class)
     @JoinColumn(name="id_order")
     private List<Article> articles=new ArrayList<Article>();
     public Order() {
